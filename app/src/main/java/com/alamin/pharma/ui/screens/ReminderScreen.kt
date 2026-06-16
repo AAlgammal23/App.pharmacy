@@ -21,7 +21,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Alarm
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.Medication
-import androidx.compose.material.icons.outlined.Plus
+import androidx.compose.material.icons.filled.Add  // تم التعديل: إضافة import جديد
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -142,7 +142,7 @@ fun ReminderScreen(modifier: Modifier = Modifier) {
                 .align(Alignment.BottomEnd)
                 .padding(24.dp)
         ) {
-            Icon(Icons.Outlined.Plus, contentDescription = "add")
+            Icon(Icons.Default.Add, contentDescription = "add")  // تم التعديل: Plus → Add
         }
     }
 
