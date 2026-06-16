@@ -1,23 +1,26 @@
-pluginManagement {
+plugins {
+    id("com.android.application") version "8.2.2" apply false
+    id("org.jetbrains.kotlin.android") version "1.9.22" apply false
+}
+
+buildscript {
     repositories {
-        google {
-            content {
-                includeGroupByRegex("com\\.android.*")
-                includeGroupByRegex("com\\.google.*")
-                includeGroupByRegex("androidx.*")
-            }
-        }
+        google()
         mavenCentral()
-        gradlePluginPortal()
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.2.2")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22")
     }
 }
-dependencyResolutionManagement {
-    // repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)  ← علّق هذا السطر
+
+allprojects {
     repositories {
         google()
         mavenCentral()
     }
 }
 
-rootProject.name = "AlAmin Pharma"
-include(":app")
+tasks.register("clean", Delete::class) {
+    delete(rootProject.buildDir)
+}
