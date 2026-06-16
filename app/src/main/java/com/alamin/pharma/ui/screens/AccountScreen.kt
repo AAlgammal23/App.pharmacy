@@ -23,7 +23,7 @@ import androidx.compose.material.icons.outlined.Facebook
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.material.icons.outlined.Phone
-import androidx.compose.material.icons.outlined.WhatsApp
+// تم إزالة import WhatsApp لأنه لم يعد مستخدماً
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -119,12 +119,12 @@ fun AccountScreen(modifier: Modifier = Modifier) {
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 ContactRow(
-                    icon = Icons.Outlined.WhatsApp,
+                    icon = Icons.Outlined.Phone,  // تم التعديل: WhatsApp → Phone
                     title = stringResource(R.string.contact_whatsapp),
                     value = contact.whatsapp
                 ) { ContactUtils.openWhatsApp(context, contact.whatsapp, "السلام عليكم، تواصل من تطبيق صيدلية الأمين الحديثة.") }
                 ContactRow(
-                    icon = Icons.Outlined.WhatsApp,
+                    icon = Icons.Outlined.Phone,  // تم التعديل: WhatsApp → Phone
                     title = "واتساب استقبال الوصفات",
                     value = contact.whatsappRx
                 ) { ContactUtils.openWhatsApp(context, contact.whatsappRx, "السلام عليكم، أرغب بإرسال وصفة طبية.") }
@@ -253,5 +253,3 @@ private fun ContactRow(
         }
     }
 }
-
-
