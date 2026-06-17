@@ -2,17 +2,7 @@ package com.alamin.pharma.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
@@ -21,11 +11,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -69,9 +55,24 @@ fun CategoriesScreen(modifier: Modifier = Modifier) {
                     .padding(horizontal = 12.dp, vertical = 4.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                item { BigCategoryCard(stringResource(R.string.section_otc), "OTC") }
-                item { BigCategoryCard(stringResource(R.string.section_prescription), "Rx") }
-                item { BigCategoryCard(stringResource(R.string.cat_vitamins), "V") }
+                item {
+                    BigCategoryCard(stringResource(R.string.section_otc), "OTC") {
+                        // افتح صفحة الأدوية الذاتية
+                        println("فتح صفحة OTC")
+                    }
+                }
+                item {
+                    BigCategoryCard(stringResource(R.string.section_prescription), "Rx") {
+                        // افتح صفحة الوصفات
+                        println("فتح صفحة Rx")
+                    }
+                }
+                item {
+                    BigCategoryCard(stringResource(R.string.cat_vitamins), "V") {
+                        // افتح صفحة الفيتامينات
+                        println("فتح صفحة Vitamins")
+                    }
+                }
                 item { Spacer(Modifier.height(80.dp)) }
             }
         }
@@ -110,11 +111,12 @@ private fun CategoryTab(c: Category, isSelected: Boolean, onClick: () -> Unit) {
 }
 
 @Composable
-private fun BigCategoryCard(title: String, badge: String) {
+private fun BigCategoryCard(title: String, badge: String, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(120.dp),
+            .height(120.dp)
+            .clickable { onClick() },   // ← الآن الكارت يستجيب للضغط
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = Color(0xFFDFF7F2)),
         elevation = CardDefaults.cardElevation(0.dp)
@@ -127,19 +129,9 @@ private fun BigCategoryCard(title: String, badge: String) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Column {
-                Text(
-                    title,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.primary
-                )
+                Text(title, fontSize = 18.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
                 Spacer(Modifier.height(8.dp))
-                Text(
-                    badge,
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.primary
-                )
+                Text(badge, fontSize = 14.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.primary)
             }
             Box(
                 modifier = Modifier
@@ -148,12 +140,7 @@ private fun BigCategoryCard(title: String, badge: String) {
                     .background(MaterialTheme.colorScheme.primary),
                 contentAlignment = Alignment.Center
             ) {
-                Text(
-                    badge,
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp
-                )
+                Text(badge, color = Color.White, fontWeight = FontWeight.Bold, fontSize = 18.sp)
             }
         }
     }
