@@ -1,108 +1,110 @@
-# صيدلية الأمين الحديثة — Al-Amin Modern Pharmacy
+# 📱 Phone Repair Toolkit — Windows Installation
 
-تطبيق أندرويد احترافي لصيدلية الأمين الحديثة، مبني بـ **Kotlin + Jetpack Compose** ومُحسَّن للأجهزة الحديثة (Android 7.0+).
+## ✅ What's included
 
-## المميزات
+- **`PhoneRepairToolkit.exe`** — Main executable (177 MB)
+- All required Electron runtime DLLs
+- Bundled HTML/CSS/JS (no Node.js installation required on the target PC)
 
-- 🎨 هوية بصرية كاملة بألوان فيروزي فاتح + أبيض
-- 🏠 شاشة رئيسية: بانر + خدمات + أقسام + منتجات مميزة + جديدة
-- 💊 شاشة الأقسام: تصفّح حسب الفئة
-- 📤 رفع الوصفة الطبية: اختيار صورة + ملاحظات + إرسال عبر واتساب
-- ⏰ منبه الدواء: إضافة / تعديل / حذف المنبهات
-- 👤 شاشة الحساب: كل بيانات التواصل + ساعات العمل
-- 🟢 تكامل مباشر مع واتساب والاتصال والبريد والموقع وفيسبوك
+**Total folder size**: ~255 MB (uncompressed)
+**Compressed**: ~104 MB (ZIP)
 
-## بيانات التواصل (مدمجة في التطبيق)
+## 📥 Installation
 
-| البند | القيمة |
-|------|------|
-| واتساب (عام) | +967774973636 |
-| واتساب (الوصفات) | +967784332800 |
-| هاتف | +967774973636 |
-| البريد | alaminmodern.ph@gmail.com |
-| العنوان | اليمن - إب - مدينة القاعدة |
-| فيسبوك | https://www.facebook.com/share/18BNE6VzVK/ |
-| ساعات العمل | 8 ص — 11 م يومياً |
+### Method 1: Run directly (Portable — No installation required)
 
-## المتطلبات
+1. Extract the ZIP file to any folder, e.g., `C:\PhoneRepairToolkit\`
+2. Open the folder
+3. Double-click **`PhoneRepairToolkit.exe`**
+4. The app opens — no installation, no admin rights needed
 
-1. **Android Studio Hedgehog (2023.1.1)** أو أحدث
-2. **JDK 17** (مدمج مع Android Studio)
-3. **Android SDK 34** (يتم تحميله من خلال SDK Manager)
+> **Tip**: You can also run it from a USB drive.
 
-## خطوات بناء ملف APK
+### Method 2: Create a desktop shortcut
 
-### الطريقة 1: عبر Android Studio (الأسهل)
+1. Right-click on `PhoneRepairToolkit.exe` → **Send to** → **Desktop (create shortcut)**
+2. Double-click the desktop shortcut to launch
 
-1. افتح Android Studio → **File → Open** → اختر مجلد `alamin-pharma/`
-2. انتظر حتى ينتهي مزامنة Gradle (Sync) — أول مرة قد تأخذ بضع دقائق
-3. من شريط القائمة: **Build → Build Bundle(s) / APK(s) → Build APK(s)**
-4. بعد الانتهاء اضغط **locate** في الرسالة التي ستظهر
-5. ستجد الملف في: `app/build/outputs/apk/debug/app-debug.apk`
+### Method 3: Add to Start Menu (manual)
 
-> لتوليد APK للنشر (Release) موقّع: **Build → Generate Signed Bundle / APK** واتبع الخطوات لإنشاء keystore.
+1. Press `Win + R`, type `shell:start menu` and press Enter
+2. Create a new folder called "Phone Repair Toolkit"
+3. Copy `PhoneRepairToolkit.exe` and the entire folder there
+4. Right-click → Create shortcut
 
-### الطريقة 2: عبر سطر الأوامر
+## ⚙️ System Requirements
 
-```bash
-cd alamin-pharma
-./gradlew assembleDebug
-```
+- **OS**: Windows 10 / 11 (64-bit)
+- **RAM**: 4 GB minimum, 8 GB recommended
+- **Disk**: 500 MB free space
+- **ADB**: Required for connecting to Android devices
+  - Download from: https://developer.android.com/tools/releases/platform-tools
+  - Extract and add to PATH
+  - Or place `adb.exe` in the same folder as `PhoneRepairToolkit.exe`
 
-الملف الناتج: `app/build/outputs/apk/debug/app-debug.apk`
+## 🚀 First Run
 
-> على Windows استبدل `./gradlew` بـ `gradlew.bat`
+1. Launch `PhoneRepairToolkit.exe`
+2. The main window opens with the sidebar
+3. Click **"🔌 ADB Console"** in the sidebar
+4. Connect your Android phone via USB with USB debugging enabled
+5. The device should appear in the dropdown within 5 seconds
 
-## تثبيت APK على الجهاز
+## 🔌 ADB Console Features
 
-### مباشرة على الجهاز
-1. انسخ ملف `app-debug.apk` إلى هاتفك (USB / بريد / Drive / Telegram…)
-2. افتح الملف من مدير الملفات
-3. وافق على "السماح بالتثبيت من مصادر غير معروفة" إن طُلب
-4. اضغط **تثبيت**
+| Feature | Description |
+|---|---|
+| **Device List** | Auto-refresh every 5 seconds, shows model + Android version + battery |
+| **Quick Commands** | 12 preset commands (device info, battery, storage, processes, etc.) |
+| **Custom Commands** | Type any `adb shell` command, press Enter to execute |
+| **Streaming** | `Ctrl+Enter` to stream long-running commands (logcat, etc.) |
+| **Command History** | `↑` / `↓` arrow keys to recall previous commands |
+| **Live Output** | See results in real-time with timestamps and duration |
+| **Cancel** | Stop streaming commands mid-execution |
+| **File Transfer** | Push / pull files to/from device |
+| **APK Install** | Install APK files on connected device |
+| **Reboot** | System / Recovery / Bootloader / EDL modes |
+| **Device Info** | Model, manufacturer, build number, fingerprint, security patch |
+| **Battery** | Level, temperature, voltage, status, health |
+| **Storage** | df -h on /data, /system, /sdcard |
+| **Processes** | Top 100 running processes |
+| **Screenshot** | Capture device screen and save as PNG |
 
-### عبر ADB (للمطورين)
-```bash
-adb install app/build/outputs/apk/debug/app-debug.apk
-```
+## 🔒 Security Notes
 
-## بنية المشروع
+- The app runs **locally** — no data sent to external servers
+- USB device access is restricted to **whitelisted vendors** (MediaTek, Qualcomm, Samsung, etc.)
+- Sensitive values (IMEI, serial numbers) are **masked** in any logging
+- For legitimate device repair only — see EULA in the app's About menu
 
-```
-alamin-pharma/
-├── app/
-│   ├── build.gradle.kts
-│   └── src/main/
-│       ├── AndroidManifest.xml
-│       ├── java/com/alamin/pharma/
-│       │   ├── AlAminApp.kt
-│       │   ├── MainActivity.kt
-│       │   ├── data/Models.kt
-│       │   ├── utils/ContactUtils.kt
-│       │   └── ui/
-│       │       ├── AlAminAppRoot.kt
-│       │       ├── theme/{Color,Theme}.kt
-│       │       ├── components/{Common,TopBar}.kt
-│       │       └── screens/{Home,Categories,Prescription,Reminder,Account}Screen.kt
-│       └── res/
-│           ├── values/{colors,strings,themes}.xml
-│           ├── values-night/themes.xml
-│           ├── drawable/ic_launcher_foreground.xml
-│           ├── mipmap*/ic_launcher{,_round}.xml
-│           └── xml/{backup_rules,data_extraction_rules,file_paths}.xml
-├── build.gradle.kts
-├── settings.gradle.kts
-├── gradle.properties
-└── gradle/wrapper/gradle-wrapper.properties
-```
+## ⚠️ Windows SmartScreen Warning
 
-## تخصيص لاحق
+When running for the first time, Windows may show:
+> "Windows protected your PC — Microsoft Defender SmartScreen prevented an unrecognized app from starting"
 
-- تغيير الألوان: عدّل `res/values/colors.xml`
-- تغيير النصوص: عدّل `res/values/strings.xml`
-- تغيير بيانات التواصل: عدّل `data/Models.kt → ContactInfo`
-- إضافة منتجات حقيقية: استبدل `SampleProducts` بقاعدة بيانات أو API
+This is normal for unsigned apps. To run:
+1. Click **"More info"**
+2. Click **"Run anyway"**
+
+The app is safe — it's just not code-signed yet. For production deployment, sign it with an EV Code Signing Certificate.
+
+## 🆘 Troubleshooting
+
+| Problem | Solution |
+|---|---|
+| "adb: command not found" | Install Android Platform Tools and add to PATH |
+| Device not detected | Enable USB debugging: Settings → About phone → tap Build number 7 times → Developer options → USB debugging |
+| Device shows as "unauthorized" | Accept the RSA fingerprint dialog on the phone |
+| App won't start | Install [Visual C++ Redistributable](https://aka.ms/vs/17/release/vc_redist.x64.exe) |
+| Antivirus flags the app | Add exception in your antivirus for the app folder |
+
+## 📞 Support
+
+For issues or questions, contact the development team.
 
 ---
 
-صُنع بعناية لصيدلية الأمين الحديثة 💚
+**Version**: 0.2.0
+**Build date**: 2026-06-16
+**Electron version**: 30.5.1
+**Target platform**: Windows 10/11 x64
